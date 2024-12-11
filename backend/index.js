@@ -5,6 +5,8 @@ const path = require("path");
 
 const listingsRoutes = require("./routes/listings");
 const authRoutes = require("./routes/auth");
+const expoPushTokenRoute = require("./routes/expoPushToken");
+const notificationsRoute = require("./routes/notifications");
 
 const app = express();
 const PORT = 3003;
@@ -13,6 +15,8 @@ app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 app.use("/api/listings", listingsRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/expoPushToken", expoPushTokenRoute);
+app.use("/api/notifications", notificationsRoute);
 app.listen(PORT, "192.168.0.108", () => console.log("Server up at port", PORT));
 
 const MONGO_URI = "mongodb://127.0.0.1:27017/donewithit";

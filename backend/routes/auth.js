@@ -8,12 +8,11 @@ router.post("/", async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email });
-
         if (!user) return res.status(404).json({success: false, message: "User not found"});
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(401).json({success: false, message: "Incorrect password"});
-        
-        const payload = { name: "Senpai", email: email, password: password};
+
+        const payload = {user};
         const secret = "jwtSecret"
         const token = jwt.sign(payload, secret)
 

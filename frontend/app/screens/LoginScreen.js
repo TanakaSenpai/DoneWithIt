@@ -20,7 +20,7 @@ function LoginScreen() {
   const [errorMessage, setErrorMessage] = useState(false)
 
   const handleSubmit = async ({email, password}) => {
-   const response = await authApi.login(email, password); 
+   const response = await authApi.login(email, password);
    if (!response.ok) {
      setErrorMessage(response.data?.message || response.originalError.message);
      return setError(true);

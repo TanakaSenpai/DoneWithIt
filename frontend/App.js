@@ -9,6 +9,7 @@ import AuthNavigator from "./app/navigation/AuthNavigator";
 import navigationTheme from "./app/navigation/navigationTheme";
 import OfflineNotice from "./app/components/OfflineNotice";
 import AppText from "./app/components/AppText";
+import { navigationRef } from "./app/navigation/rootNavigation";
 
 export default function App() {
   const [user, setUser] = useState();
@@ -32,7 +33,7 @@ export default function App() {
       <AuthContext.Provider value={{ user, setUser }}>
         <OfflineNotice />
         <NavigationContainer theme={navigationTheme}>
-          {user ? <AppNavigator /> : <AuthNavigator />}
+          {user ? <AppNavigator ref={navigationRef} /> : <AuthNavigator />}
         </NavigationContainer>
       </AuthContext.Provider>
     </SafeAreaView>
